@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Projets (probablement sur index.html uniquement)
   const projects = [
     {
-      title: "Compétences",
-      description: "Installation PC/réseau\nDépannage PC/réseau\nEntretien PC/réseau\nMaîtrise de CiscoPacketTracer\nTravail en équipe\nProgrammation (HTML/CSS/SQL/Python)"
+      title: "Soft skills",
+      description: "Travail en équipe\nGestion du temps et des priorités\nAdaptabilité\nEsprit d’analyse et de résolution de problèmes\nCommunication claire"
     },
     {
       title: "Parcours",
