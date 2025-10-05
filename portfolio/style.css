@@ -1,0 +1,884 @@
+/* ======= Global ======= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Fira Code', monospace;
+  min-height: 100vh;
+  overflow: hidden; /* ✅ empêche le scroll */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("https://wallpapers.com/images/featured/data-center-775ta0o0wf4nbyq3.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #f0f0f0;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======= Formes décoratives (quarts de cercle) ======= */
+.shape {
+  position: absolute;
+  background: rgba(18, 18, 18, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  z-index: 0;
+}
+
+.shape-left {
+  top: -300px;
+  left: -300px;
+  width: 700px;
+  height: 700px;
+  border-radius: 0 0 700px 0;
+  animation: slideInLeft 1.2s ease forwards;
+  animation-delay: 0.1s;
+}
+
+.shape-right {
+  bottom: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  border-radius: 500px 0 0 0;
+  animation: slideInRight 1.2s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-300px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(300px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ======= Menu cliquable (amélioré) ======= */
+.top-right-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(18, 18, 18, 0.8);
+  padding: 14px 26px;
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(0, 220, 255, 0.4), inset 0 0 10px rgba(0, 180, 255, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(95, 227, 255, 0.3);
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav a {
+  color: #5fe3ff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: #5fe3ff;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #5fe3ff, 0 0 20px #00cfff;
+}
+
+nav a.active {
+  color: #ffffff;
+  border-bottom: 2px solid #5fe3ff;
+  padding-bottom: 2px;
+}
+
+/* ======= Bloc principal (amélioré) ======= */
+.about-box {
+  background: rgba(18, 18, 18, 0.8);
+  padding: 60px 80px;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 220, 255, 0.25), 0 0 80px rgba(0, 220, 255, 0.1);
+  max-width: 900px;
+  width: 90%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(95, 227, 255, 0.25);
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.2s;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 250px;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 50px rgba(0, 240, 255, 0.4), 0 0 100px rgba(0, 200, 255, 0.2);
+}
+
+.about-box h2 {
+  margin: 0;
+  font-size: 3rem;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  padding-bottom: 12px;
+  text-shadow: 0 0 12px #5fe3ff, 0 0 25px #00cfff;
+}
+
+.about-box h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #5fe3ff, transparent);
+  margin: 8px auto 0 auto;
+  border-radius: 2px;
+}
+
+/* ======= About-me ======= */
+.about-me {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.about-me img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  transform: translateX(-10px);
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.6rem;
+  color: #5fe3ff;
+  text-align: left;
+}
+
+.about-text p {
+  margin: 0;
+  line-height: 1.5;
+  font-style: normal;
+}
+
+/* ======= Footer ======= */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  padding: 12px 0;
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.6s;
+  z-index: 1;
+}
+
+/* ======= Responsive ======= */
+@media (max-width: 768px) {
+  .about-me {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .about-text h3 {
+    text-align: center;
+  }
+
+  .split-box {
+    flex-direction: column;
+  }
+}
+
+/* ======= Formulaire de contact ======= */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #5fe3ff;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(95, 227, 255, 0.3);
+  background: rgba(18, 18, 18, 0.7);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #5fe3ff;
+  box-shadow: 0 0 10px rgba(95, 227, 255, 0.6);
+}
+
+.btn-submit {
+  margin-top: 10px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #00cfff, #5fe3ff);
+  color: #121212;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(95, 227, 255, 0.7);
+}
+
+/* Centrage spécial pour la page contact */
+body.contact-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.contact-page .about-box {
+  margin-top: 0;
+}
+
+/* ======= Timeline (Parcours) ======= */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.timeline-item {
+  background: rgba(18, 18, 18, 0.6);
+  border-left: 3px solid #5fe3ff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 0 20px rgba(95, 227, 255, 0.5);
+}
+
+.timeline-item .date {
+  font-weight: bold;
+  color: #5fe3ff;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.timeline-item h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.timeline-item p {
+  margin: 5px 0 0;
+  font-size: 0.95rem;
+  color: #cccccc;
+  line-height: 1.4;
+}
+
+/* ======= Centrage spécial pour la page parcours ======= */
+body.parcours-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.parcours-page .about-box {
+  margin-top: 0;
+}
+
+/* ======= Page compétences ======= */
+body.competence-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.competence-page .about-box {
+  margin-top: 0;
+}
+
+/* Bloc divisé compétences/langues */
+.split-box {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: left;
+}
+
+.skills-column,
+.lang-column {
+  flex: 1;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-list li {
+  margin-bottom: 10px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.skills-list li::before {
+  content: "▹";
+  color: #5fe3ff;
+  position: absolute;
+  left: 0;
+}
+
+/* ======= Section Langues ======= */
+.languages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.language {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.language img {
+  width: 40px;
+  height: 28px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.progress-container {
+  flex: 1;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00cfff, #5fe3ff);
+  border-radius: 8px;
+  transition: width 0.5s ease;
+}
+
+.level {
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(95, 227, 255, 0.8);
+}
+
+/* Logos GitHub et LinkedIn sous le formulaire */
+.social-contact {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* un peu plus d'espacement */
+  margin-top: 15px;
+}
+
+.social-logo {
+  width: 70px;   /* plus grand pour visibilité */
+  height: 70px;  /* plus grand pour visibilité */
+  object-fit: contain;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-logo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(95, 227, 255, 0.7);
+}
+
+/* ======= Centrage spécial pour la page stage ======= */
+body.stage-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.stage-page .about-box {
+  margin-top: 0;
+}
+
+/* ======= Bouton Télécharger mon CV ======= */
+.cv-download-btn {
+  position: fixed;
+  bottom: 100px;
+  left: 130px;
+  padding: 14px 22px;
+  background: rgba(18, 18, 18, 0.8);
+  color: #5fe3ff;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(95, 227, 255, 0.3);
+  box-shadow: 0 0 25px rgba(0, 220, 255, 0.4), inset 0 0 10px rgba(0, 180, 255, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.4s; /* petit décalage pour arriver après le menu */
+}
+
+.cv-download-btn:hover {
+  transform: translateY(-4px);
+  color: #ffffff;
+  text-shadow: 0 0 10px #5fe3ff, 0 0 20px #00cfff;
+  box-shadow: 0 0 35px rgba(95, 227, 255, 0.8), inset 0 0 12px rgba(0, 200, 255, 0.4);
+}
+
+/* ======= Page veille ======= */
+body.veille-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.veille-page .about-box {
+  margin-top: 0;
+  max-width: 950px;
+  padding: 50px 60px;
+}
+
+/* Sujet choisi encadré */
+.sujet-box {
+  background: rgba(18, 18, 18, 0.7);
+  border: 2px solid #5fe3ff;
+  padding: 15px 25px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  text-shadow: 0 0 8px #5fe3ff;
+}
+
+/* Split box */
+body.veille-page .split-box {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.veille-column {
+  flex: 1;
+}
+
+.veille-column h3 {
+  color: #5fe3ff;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.veille-column p,
+.veille-column li {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Logo Fortinet */
+.fortinet-logo {
+  display: block;
+  margin: 0 auto 15px auto;
+  max-width: 180px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(95, 227, 255, 0.6));
+  transition: transform 0.3s ease;
+}
+
+.fortinet-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 15px rgba(95, 227, 255, 0.9));
+}
+
+.projet-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-card {
+  background: rgba(18, 18, 18, 0.8);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(95, 227, 255, 0.3);
+  box-shadow: 0 0 25px rgba(0, 220, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 35px rgba(95, 227, 255, 0.5);
+}
+
+.project-card h3 {
+  margin: 0 0 8px 0;
+  color: #5fe3ff;
+}
+
+.project-card p {
+  margin: 0 0 10px 0;
+  color: #f0f0f0;
+}
+
+.project-card a {
+  color: #5fe3ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #5fe3ff;
+}
+
+.projet-folder-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-list li {
+  margin-bottom: 12px;
+}
+
+.project-list li a {
+  color: #5fe3ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-list li a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px #5fe3ff;
+}
+
+/* ======= Centrage spécial pour la page projets ======= */
+/* ======= Page projets ======= */
+body.projet-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* centre verticalement */
+  padding: 50px 20px;
+  position: relative;
+}
+
+body.projet-page .about-box {
+  max-width: 1000px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 0; /* plus besoin de margin-top élevé */
+  background: rgba(18, 18, 18, 0.85);
+  padding: 60px 50px; /* un peu plus de padding pour équilibre */
+  border-radius: 20px;
+  border: 1px solid rgba(95, 227, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(0, 220, 255, 0.2), 0 0 80px rgba(0, 220, 255, 0.05);
+  animation: fadeInUp 1s ease forwards;
+}
+
+/* Titre de la page projets */
+body.projet-page h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  text-shadow: 0 0 12px #5fe3ff, 0 0 25px #00cfff;
+  position: relative;
+}
+
+body.projet-page h2::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 3px;
+  margin: 10px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(to right, transparent, #5fe3ff, transparent);
+}
+
+/* ======= Tabs ======= */
+body.projet-page .tabs {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+body.projet-page .tab-btn {
+  padding: 12px 25px;
+  border-radius: 14px;
+  border: 1px solid rgba(95, 227, 255, 0.3);
+  background: rgba(18, 18, 18, 0.8);
+  color: #5fe3ff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 220, 255, 0.2);
+}
+
+body.projet-page .tab-btn.active {
+  background: linear-gradient(90deg, #00cfff, #5fe3ff);
+  color: #121212;
+  box-shadow: 0 0 20px rgba(0, 220, 255, 0.7);
+}
+
+body.projet-page .tab-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(95, 227, 255, 0.8);
+}
+
+/* ======= Contenu des tabs ======= */
+body.projet-page .tab-content {
+  display: none;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+body.projet-page .tab-content.active {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* ======= Cartes projets ======= */
+body.projet-page .project-column {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+body.projet-page .project-card {
+  background: rgba(18, 18, 18, 0.85);
+  border-radius: 18px;
+  padding: 25px;
+  border: 1px solid rgba(95, 227, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 220, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+body.projet-page .project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 50px rgba(0, 240, 255, 0.5), 0 0 90px rgba(0, 200, 255, 0.25);
+}
+
+/* Titres et textes des cartes */
+body.projet-page .project-card h3 {
+  margin: 0 0 12px 0;
+  color: #5fe3ff;
+  font-size: 1.6rem;
+  text-shadow: 0 0 8px #00cfff;
+}
+
+body.projet-page .project-card p {
+  margin: 0 0 15px 0;
+  color: #f0f0f0;
+  line-height: 1.5;
+}
+
+body.projet-page .project-card ul.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body.projet-page .project-card ul.project-list li {
+  margin-bottom: 10px;
+}
+
+body.projet-page .project-card ul.project-list li a {
+  color: #5fe3ff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+body.projet-page .project-card ul.project-list li a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 12px #5fe3ff, 0 0 25px #00cfff;
+  transform: translateX(3px);
+}
+
+/* ======= Responsive ======= */
+@media (max-width: 900px) {
+  body.projet-page .tab-content.active {
+    flex-direction: column;
+    align-items: center;
+  }
+  body.projet-page .about-box {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  body.projet-page .tab-btn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+  body.projet-page h2 {
+    font-size: 2.2rem;
+  }
+  body.projet-page .project-card {
+    padding: 20px;
+  }
+}
+
+/* ======= Ajustement final ++ pour la page compétences ======= */
+body.competence-page {
+  overflow: hidden; /* ✅ empêche le scroll global */
+}
+
+body.competence-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px 80px 20px; /* ✅ espace ajouté haut/bas pour éviter contact menu/footer */
+  box-sizing: border-box;
+}
+
+/* Bloc principal ajusté */
+body.competence-page .about-box {
+  margin-top: 0;
+  padding: 35px 55px;
+  max-width: 950px;
+  width: 90%;
+  max-height: 70vh; /* ✅ réduit un peu la hauteur pour laisser respirer top/bottom */
+  overflow-y: auto; /* ✅ scroll interne uniquement si contenu trop long */
+  scrollbar-width: thin;
+  scrollbar-color: #5fe3ff rgba(18, 18, 18, 0.6);
+  background: rgba(18, 18, 18, 0.85);
+  border-radius: 20px;
+  border: 1px solid rgba(95, 227, 255, 0.25);
+  box-shadow: 0 0 40px rgba(0, 220, 255, 0.2), 0 0 80px rgba(0, 220, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1; /* ✅ au-dessus des formes décoratives */
+}
+
+/* Scrollbar personnalisée */
+body.competence-page .about-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.competence-page .about-box::-webkit-scrollbar-track {
+  background: rgba(18, 18, 18, 0.5);
+  border-radius: 10px;
+}
+
+body.competence-page .about-box::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00cfff, #5fe3ff);
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(95, 227, 255, 0.7);
+}
+
+body.competence-page .about-box::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #5fe3ff, #00cfff);
+  box-shadow: 0 0 12px rgba(95, 227, 255, 0.9);
+}
+
