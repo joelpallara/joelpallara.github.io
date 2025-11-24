@@ -168,6 +168,7 @@ nav a.active {
   background: linear-gradient(to right, transparent, #5fe3ff, transparent);
   margin: 8px auto 0 auto;
   border-radius: 2px;
+  font-size: 3.4rem;
 }
 
 /* ======= About-me ======= */
@@ -193,14 +194,15 @@ nav a.active {
 
 .about-text h3 {
   margin: 0 0 10px 0;
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   color: #5fe3ff;
   text-align: left;
 }
 
 .about-text p {
   margin: 0;
-  line-height: 1.5;
+  font-size: 1.15rem;
+  line-height: 1.6;
   font-style: normal;
 }
 
@@ -881,5 +883,6 @@ body.competence-page .about-box::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #5fe3ff, #00cfff);
   box-shadow: 0 0 12px rgba(95, 227, 255, 0.9);
 }
+
 
 
