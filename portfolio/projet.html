@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets - Joel PALLARA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="projet-page">
+
+  <!-- Formes décoratives -->
+  <div class="shape shape-left"></div>
+  <div class="shape shape-right"></div>
+
+  <!-- Menu cliquable -->
+  <div class="top-right-menu">
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="cv.html">Compétences</a></li>
+        <li><a href="parcours.html">Parcours</a></li>
+        <li><a href="stage.html">Stage</a></li>
+        <li><a href="veille.html">Veille</a></li>
+        <li><a href="projet.html" class="active">Projets</a></li>
+        <li><a href="contact.html">Me contacter</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main>
+    <div class="about-box">
+      <h2>Mes projets</h2>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="mini">Projet Professionnel</button>
+        <button class="tab-btn" data-tab="scolaire">Projets scolaires</button>
+      </div>
+
+      <!-- Contenu des Tabs -->
+      <div class="tab-content active" id="mini">
+        <div class="project-column">
+          <div class="project-card">
+            <h3>Projet professionnel</h3>
+            <p>Projet professionnel de fin de BTS :</p>
+            <ul class="project-list">
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="scolaire">
+
+        <!-- SECTION TP LOGICIELS -->
+        <div class="project-column">
+          <div class="project-card">
+            <h3>TP Logiciels</h3>
+            <p>Différents travaux pratiques en Bash, SQL, PowerShell et bases de données :</p>
+            <ul class="project-list">
+              <li><a href="Projets/Base_de_donnée.pdf" target="_blank">Base de données</a></li>
+              <li><a href="Projets/tp_bash.pdf" target="_blank">TP Bash</a></li>
+              <li><a href="Projets/tp_SQL.pdf" target="_blank">TP SQL</a></li>
+              <li><a href="Projets/Powershell_kohlanta.pdf" target="_blank">PowerShell Kohlanta</a></li>
+            </ul>
+          </div>
+        </div>
+      
+        <!-- SECTION TP RESEAU -->
+        <div class="project-column">
+          <div class="project-card">
+            <h3>TP Réseau</h3>
+            <p>Travaux pratiques de réseau réalisés en BTS SIO :</p>
+            <ul class="project-list">
+              <li><a href="Projets/Mini_projet.pdf" target="_blank">Rapport Mini Projet</a></li>
+              <li><a href="Projets/Schema_mini_projet.PNG" target="_blank">Schéma Mini Projet</a></li>
+              <li><a href="Projets/tp_NAT_PAT.pdf" target="_blank">TP NAT & PAT</a></li>
+              <li><a href="Projets/tp_VLANs_ACL.pdf" target="_blank">TP VLANs & ACL</a></li>
+              <li><a href="Projets/tp_sous_reseaux.pdf" target="_blank">TP Sous-réseau</a></li>
+              <li><a href="Projets/tp_routage_dynamique.pdf" target="_blank">TP Routage OSPF</a></li>
+              <li><a href="Projets/tp_routage_statique.pdf" target="_blank">TP Routage RIP</a></li>
+            </ul>
+          </div>
+        </div>
+      
+      </div>
+
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Joel PALLARA</p>
+  </footer>
+
+  <script>
+    // Tabs interactivités
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Mettre l'année courante dans le footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,9 @@
+j'ai une idée, dans le footer en bas de l'écran, je pense rajouter les logos de linkedin et github et lorsque tu cliques sur ces logos ça te renvois vers mes comptes linkedin et github,
+
+voici le lien des logos : 
+https://www.pngall.com/wp-content/uploads/13/Github-Logo-PNG-Clipart.png 
+https://www.freepnglogos.com/uploads/linkedin-logo-transparent-png-25.png 
+
+voici les liens vers lesquels c'est sensé nous rediriger : 
+https://www.linkedin.com/in/joel-pallara 
+https://github.com/joelpallara
